@@ -18,7 +18,7 @@ namespace SomeSampleAsync
         {
             Console.WriteLine("{0} GetRandomNumber", DateTime.Now);
             await Task.Delay(2000);
-            return (new Random()).Next();
+            return new Random().Next(1,10);
         }
 
         public async Task<string> GetSpecialStringAsync(string message)

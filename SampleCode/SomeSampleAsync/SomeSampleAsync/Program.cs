@@ -15,7 +15,7 @@ try
     // Version 1
     Console.WriteLine("First way to use Async");
     timer.Start();
-    await WaysToUseAsync.DoTasksV1("Some string");
+    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV1("Some string"));
     timer.Stop();
     Console.WriteLine("{0} Elapsed time V1", timer.Elapsed.ToString());
 
@@ -23,7 +23,7 @@ try
     Console.WriteLine("Second way to use Async");
     timer.Reset();
     timer.Start();
-    await WaysToUseAsync.DoTasksV2("Some string");
+    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV2("Some string"));
     timer.Stop();
     Console.WriteLine("{0} Elapsed time V2", timer.Elapsed.ToString());
 
@@ -31,7 +31,7 @@ try
     Console.WriteLine("Thrird way to use Async");
     timer.Reset();
     timer.Start();
-    await WaysToUseAsync.DoTasksV3("Some string");
+    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV3("Some string"));
     timer.Stop();
     Console.WriteLine("{0} Elapsed time V3", timer.Elapsed.ToString());
 
@@ -39,7 +39,7 @@ try
     Console.WriteLine("Fourth way to use Async");
     timer.Reset();
     timer.Start();
-    await WaysToUseAsync.DoTasksV4("Some string");
+    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV4("Some string"));
     timer.Stop();
     Console.WriteLine("{0} Elapsed time V4", timer.Elapsed.ToString());
 }
