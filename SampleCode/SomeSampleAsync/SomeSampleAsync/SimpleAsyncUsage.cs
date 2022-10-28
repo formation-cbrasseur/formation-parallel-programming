@@ -18,10 +18,10 @@ namespace SomeSampleAsync
                     client.GetStringAsync("https://official-joke-api.appspot.com/random_joke")
                 );
 
-                Console.WriteLine("FIRST RESULT");
+                Console.WriteLine("First joke");
                 Console.WriteLine(results[0]);
 
-                Console.WriteLine("SECOND RESULT");
+                Console.WriteLine("Second joke");
                 Console.WriteLine(results[1]);
             }
             catch (Exception ex)
