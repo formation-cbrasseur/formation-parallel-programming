@@ -59,38 +59,38 @@ var timer = new Stopwatch();
 //// Just waiting before starting next sample of code
 //Thread.Sleep(2000);
 
-Console.WriteLine("Using Action class to run 2 parallel methods : Starting timer");
-timer.Start();
+//Console.WriteLine("Using Action class to run 2 parallel methods : Starting timer");
+//timer.Start();
 
-Action task1 = () =>
-{
-    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//Action task1 = () =>
+//{
+//    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-    Parallel.ForEach(numbers, (number) =>
-    {
-        Console.WriteLine($"Processing number: {number}");
-    });
-    Console.WriteLine("Task 1 is running.");
-    Thread.Sleep(1000);
-};
+//    Parallel.ForEach(numbers, (number) =>
+//    {
+//        Console.WriteLine($"Processing number: {number}");
+//    });
+//    Console.WriteLine("Task 1 is running.");
+//    Thread.Sleep(1000);
+//};
 
-Action task2 = () =>
-{
-    List<int> numbers = new List<int> { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+//Action task2 = () =>
+//{
+//    List<int> numbers = new List<int> { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
-    Parallel.ForEach(numbers, (number) =>
-    {
-        Console.WriteLine($"Processing number: {number}");
-    });
-    Console.WriteLine("Task 2 is running.");
-    Thread.Sleep(1500);
-};
+//    Parallel.ForEach(numbers, (number) =>
+//    {
+//        Console.WriteLine($"Processing number: {number}");
+//    });
+//    Console.WriteLine("Task 2 is running.");
+//    Thread.Sleep(1500);
+//};
 
-// Use the Parallel.Invoke method to run the tasks concurrently.
-Parallel.Invoke(task1, task2);
-timer.Stop();
+//// Use the Parallel.Invoke method to run the tasks concurrently.
+//Parallel.Invoke(task1, task2);
+//timer.Stop();
 
-Console.WriteLine("{0} Elapsed time to run 2 actions using Parallel.Invoke", timer.Elapsed.ToString());
+//Console.WriteLine("{0} Elapsed time to run 2 actions using Parallel.Invoke", timer.Elapsed.ToString());
 
 //// Some other sample of code using Parallel class
 //string[] words = { "Hello", "world", "how", "are", "you", "?" };

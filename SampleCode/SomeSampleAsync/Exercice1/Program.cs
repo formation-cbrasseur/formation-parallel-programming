@@ -37,10 +37,25 @@ namespace Exercice1
             timer.Stop();
             Console.WriteLine("{0} Elapsed time to process 10 integers", timer.Elapsed.ToString());
 
-            // Step 3
+            // Step 3 
             Console.WriteLine();
             Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 2 :");
+            Console.WriteLine("STEP 3 :");
+            timer.Reset();
+
+            timer.Start();
+            Parallel.For(0, numbers.Count, (i) =>
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine($"Processing number: {numbers[i]}");
+            });
+            timer.Stop();
+            Console.WriteLine("{0} Elapsed time to process 10 integers with Parallel.For", timer.Elapsed.ToString());
+
+            // Step 4
+            Console.WriteLine();
+            Console.WriteLine("--------------------");
+            Console.WriteLine("STEP 4 :");
             timer.Reset();
             Console.WriteLine("Using Action class to run 2 parallel methods : Starting timer");
             timer.Start();

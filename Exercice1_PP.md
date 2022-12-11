@@ -10,7 +10,7 @@
 - Démarrer votre programme et observez la sortie
 
 ### Step 2
-- Ajoutez un Stopwatch pour analyser le temps nécessaire pour réaliser l'opération, sans programmation parallèle, l'opération durerait minimum 10 secondes.
+- Ajoutez un Stopwatch pour analyser le temps nécessaire pour réaliser l'opération, sans programmation parallèle, l'opération durerait minimum 10 secondes (vous pouvez tester d'ailleur avec un simple ForEach sur la liste)
 ```
 var timer = new Stopwatch() // un import sera nécessaire
 timer.Start();
@@ -20,13 +20,17 @@ Console.WriteLine("{0} Elapsed time to process the list", timer.Elapsed.ToString
 ```
 
 ### Step 3
-- Réaliser des tâches concurrentielles grâce à la méthode Parallel.Invoke
-- La première Action doit process les nombres de 1 à 10 avec un Thread.Sleep(1000);
-- La seconde Action doit process les nombres de 10 à 20 avec un Thread.Sleep(1500);
-- Ajouter la méthode Parallel.Invoke pour lancer en parallèle les deux actions créées précédemment.
-- Ajouter autour de tout ça les méthodes permettant de calculer et afficher la durée, comme pour l'étape 2
+- Réaliser les mêmes opérations que précédemment en utilisant Parallel.For
 - Pour redémarrer le timer utilisez : 
 ```
 timer.Reset();
 ```
+
+### Step 4
+- Réaliser des tâches concurrentielles grâce à la méthode Parallel.Invoke
+- La première Action doit process les nombres de 1 à 10 avec un Thread.Sleep(1000);
+- La seconde Action doit process les nombres de 10 à 20 avec un Thread.Sleep(1500);
+- Ajoutez la méthode Parallel.Invoke pour lancer en parallèle les deux actions créées précédemment.
+- Ajoutez autour de tout ça les méthodes permettant de calculer et afficher la durée, comme pour l'étape 2
+- Pensez à Reset le timer
 - Démarrer à nouveau votre programme et observez la sortie.
