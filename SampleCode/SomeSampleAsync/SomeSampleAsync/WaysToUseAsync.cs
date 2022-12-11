@@ -53,7 +53,7 @@ namespace SomeSampleAsync
             var numberTask = fakeAsync.GetRandomNumberAsync();
             var stringTask = fakeAsync.GetSpecialStringAsync(message);
 
-            await Task<string>.WhenAll(emailTask, numberTask, stringTask);
+            await Task.WhenAll(emailTask, numberTask, stringTask);
             Console.WriteLine("{0} Out of method DoTasksV4", DateTime.Now);
             var randomNumber = numberTask.Result.ToString();
             var upperString = stringTask.Result;

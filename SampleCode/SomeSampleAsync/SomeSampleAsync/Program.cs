@@ -2,13 +2,14 @@
 using SomeSampleAsync;
 using System.Diagnostics;
 
+var timer = new Stopwatch();
 // First sample using async and await, both calls are waited but done in the same time
 //SimpleAsyncUsage.SimpleAsyncCall();
+//Thread.Sleep(4000);
 
 // Second sample comparing time of 4 different usage of async
 //try
 //{
-//    var timer = new Stopwatch();
 
 //    // Version 1
 //    Console.WriteLine("First way to use Async");
@@ -41,14 +42,12 @@ using System.Diagnostics;
 //    timer.Stop();
 //    Console.WriteLine("{0} Elapsed time V4", timer.Elapsed.ToString());
 //}
-//catch(Exception ex)
+//catch (Exception ex)
 //{
 //    Console.WriteLine(ex.ToString());
 //}
 
-
 //// Third sample of code using Parallel class
-var timer = new Stopwatch();
 //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 //Parallel.ForEach(numbers, (number) =>
