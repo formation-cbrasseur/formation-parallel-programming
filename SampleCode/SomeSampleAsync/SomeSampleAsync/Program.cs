@@ -110,3 +110,48 @@ var timer = new Stopwatch();
 //});
 
 //Console.WriteLine($"The sum of the numbers is: {sumNumbers}");
+
+// Reading files asynchrounously
+//List<string> filePaths = new List<string>
+//{
+//    "file1.txt",
+//    "file2.txt",
+//    "file3.txt"
+//};
+
+//Parallel.ForEach(filePaths, (filePath) =>
+//{
+//    string[] contents = File.ReadAllLines(filePath);
+
+//    Console.WriteLine($"Processing file: {filePath}");
+
+//    Parallel.ForEach(contents, (content) =>
+//    {
+//        Console.WriteLine(content);
+//    });
+//});
+
+// Same but with Parallel.Invoke
+// Task one do a ToUpper on all contents and put it in console
+// Task two do a ToLower on the all the contents and put it in console
+//Action task1 = () =>
+//{
+//    string[] contents = File.ReadAllLines(filePaths[0]);
+
+//    Parallel.ForEach(contents, (content) =>
+//    {
+//        Console.WriteLine("Upper : {0}", content.ToUpper());
+//    });
+//};
+
+//Action task2 = () =>
+//{
+//    string[] contents = File.ReadAllLines(filePaths[1]);
+
+//    Parallel.ForEach(contents, (content) =>
+//    {
+//        Console.WriteLine("Lower : {0}", content.ToLower());
+//    });
+//};
+
+//Parallel.Invoke(task1, task2);

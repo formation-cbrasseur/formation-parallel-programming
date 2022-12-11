@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
@@ -89,6 +90,29 @@ namespace Exercice1
             timer.Stop();
 
             Console.WriteLine("{0} Elapsed time to run 2 actions using Parallel.Invoke", timer.Elapsed.ToString());
+
+            // Step 5
+            Console.WriteLine();
+            Console.WriteLine("--------------------");
+            Console.WriteLine("STEP 5 :");
+
+            var sumNumbers = 0;
+            timer.Reset();
+            timer.Start();
+            Parallel.Invoke(() =>
+            {
+                List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+                sumNumbers = numbers.Aggregate((total, next) => total + next);
+            });
+            timer.Stop();
+            Console.WriteLine("{0} Elapsed time to get sum using Parallel.Invoke", timer.Elapsed.ToString());
+
+            timer.Reset();
+            timer.Start();
+            var sumWithLinq = numbers.Sum();
+            timer.Stop();
+            Console.WriteLine("{0} Elapsed time to get sum using Linq", timer.Elapsed.ToString());
         }
     }
 }
