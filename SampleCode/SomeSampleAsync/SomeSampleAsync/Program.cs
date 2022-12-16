@@ -155,3 +155,21 @@ var timer = new Stopwatch();
 //};
 
 //Parallel.Invoke(task1, task2);
+
+// Parallel with Linq
+//int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//var evenNumbers = numbers.AsParallel().Where(n => n % 2 == 0);
+//evenNumbers.ForAll(n => Console.WriteLine(n));
+
+// Other sample of code using PLinq
+List<Employee> employees = new List<Employee>
+{
+    new Employee { Name = "John", Salary = 50000 },
+    new Employee { Name = "Jane", Salary = 60000 },
+    new Employee { Name = "Adam", Salary = 70000 },
+    new Employee { Name = "Eve", Salary = 80000 }
+};
+
+var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
+
+highSalaryEmployees.ForAll(e => Console.WriteLine("{0} has a high salary.", e.Name));
