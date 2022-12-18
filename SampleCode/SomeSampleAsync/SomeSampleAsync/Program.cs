@@ -66,6 +66,33 @@ var timer = new Stopwatch();
 //    Console.WriteLine(ex.ToString());
 //}
 
+//Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
+//Task<Double>[] taskArray = {
+//    Task<Double>.Factory.StartNew(() => DoComputation(1.0)),
+//    Task<Double>.Factory.StartNew(() => DoComputation(100.0)),
+//    Task<Double>.Factory.StartNew(() => DoComputation(1000.0))
+//};
+
+//var results = new Double[taskArray.Length];
+//Double sum = 0;
+
+//for (int i = 0; i < taskArray.Length; i++)
+//{
+//    results[i] = taskArray[i].Result;
+//    Console.Write("{0:N1} {1}", results[i], i == taskArray.Length - 1 ? "= " : "+ ");
+//    sum += results[i];
+//}
+//Console.WriteLine("{0:N1}", sum);
+
+//double DoComputation(double start)
+//{
+//    Double sum = 0;
+//    for (var value = start; value <= start + 10; value += .1)
+//        sum += value;
+
+//    return sum;
+//}
+
 //// Third sample of code using Parallel class
 //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -185,33 +212,6 @@ var timer = new Stopwatch();
 //};
 
 //Parallel.Invoke(task1, task2);
-
-//Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
-//Task<Double>[] taskArray = {
-//    Task<Double>.Factory.StartNew(() => DoComputation(1.0)),
-//    Task<Double>.Factory.StartNew(() => DoComputation(100.0)),
-//    Task<Double>.Factory.StartNew(() => DoComputation(1000.0))
-//};
-
-//var results = new Double[taskArray.Length];
-//Double sum = 0;
-
-//for (int i = 0; i < taskArray.Length; i++)
-//{
-//    results[i] = taskArray[i].Result;
-//    Console.Write("{0:N1} {1}", results[i], i == taskArray.Length - 1 ? "= " : "+ ");
-//    sum += results[i];
-//}
-//Console.WriteLine("{0:N1}", sum);
-
-//double DoComputation(double start)
-//{
-//    Double sum = 0;
-//    for (var value = start; value <= start + 10; value += .1)
-//        sum += value;
-
-//    return sum;
-//}
 
 // Parallel with Linq
 //int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
