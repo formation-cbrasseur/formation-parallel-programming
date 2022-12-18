@@ -133,17 +133,6 @@ var timer = new Stopwatch();
 //    });
 //});
 
-//// Do Parallel operations with a limit on how many processors should be used
-//List<int> numberList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
-
-//ParallelOptions opt = new ParallelOptions();
-//opt.MaxDegreeOfParallelism = 4;
-
-//Parallel.ForEach(numberList, opt, i =>
-//{
-//    Console.WriteLine("Writing {0} operation", i);
-//});
-
 // Same but with Parallel.Invoke
 // Task one do a ToUpper on all contents and put it in console
 // Task two do a ToLower on the all the contents and put it in console
@@ -156,6 +145,18 @@ var timer = new Stopwatch();
 //        Console.WriteLine("Upper : {0}", content.ToUpper());
 //    });
 //};
+
+//// Do Parallel operations with a limit on how many processors should be used
+//List<int> numberList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+//ParallelOptions opt = new ParallelOptions();
+//opt.MaxDegreeOfParallelism = 4;
+
+//Parallel.ForEach(numberList, opt, i =>
+//{
+//    Console.WriteLine("Writing {0} operation", i);
+//});
+
 
 //Action task2 = () =>
 //{
