@@ -44,3 +44,9 @@ numbers.Sum();
 ```
 - Ajouter le timer afin de comparer la durée pour calculer le résultat.
 - Que remarquez-vous ? Avez-vous une idée de pourquoi ce résultat n'est pas aussi satisfaisant qu'on l'aurait souhaité ?
+
+### Step 6 : Using Action & Parallel.Invoke to read two file calculate the number of words in it
+- Vous avez deux fichiers, le but est de compter le nombre de mots qui sont dans ces fichiers.
+- Utilisez Action & Parallel.Invoke pour réaliser les deux opérations simultanément.
+- Le séparateur est " "
+- Affichez également ligne par ligne le nombre de mot.

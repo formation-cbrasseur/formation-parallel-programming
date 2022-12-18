@@ -147,15 +147,15 @@ var timer = new Stopwatch();
 //});
 
 //// Some other sample of code with a return value
-//var sumNumbers = 0;
-//Parallel.Invoke(() =>
-//{
-//    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    var sumNumbers = 0;
+    Parallel.Invoke(() =>
+    {
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-//    sumNumbers = numbers.Aggregate((total, next) => total + next);
-//});
+        sumNumbers = numbers.Aggregate((total, next) => total + next);
+    });
 
-//Console.WriteLine($"The sum of the numbers is: {sumNumbers}");
+    Console.WriteLine($"The sum of the numbers is: {sumNumbers}");
 
 // Reading files asynchrounously
 //List<string> filePaths = new List<string>
@@ -191,27 +191,27 @@ var timer = new Stopwatch();
 // Same but with Parallel.Invoke
 // Task one do a ToUpper on all contents and put it in console
 // Task two do a ToLower on the all the contents and put it in console
-//Action task1 = () =>
-//{
-//    string[] contents = File.ReadAllLines(filePaths[0]);
+Action task1 = () =>
+{
+    string[] contents = File.ReadAllLines(filePaths[0]);
 
-//    Parallel.ForEach(contents, (content) =>
-//    {
-//        Console.WriteLine("Upper : {0}", content.ToUpper());
-//    });
-//};
+    Parallel.ForEach(contents, (content) =>
+    {
+        Console.WriteLine("Upper : {0}", content.ToUpper());
+    });
+};
 
-//Action task2 = () =>
-//{
-//    string[] contents = File.ReadAllLines(filePaths[1]);
+Action task2 = () =>
+{
+    string[] contents = File.ReadAllLines(filePaths[1]);
 
-//    Parallel.ForEach(contents, (content) =>
-//    {
-//        Console.WriteLine("Lower : {0}", content.ToLower());
-//    });
-//};
+    Parallel.ForEach(contents, (content) =>
+    {
+        Console.WriteLine("Lower : {0}", content.ToLower());
+    });
+};
 
-//Parallel.Invoke(task1, task2);
+Parallel.Invoke(task1, task2);
 
 // Parallel with Linq
 //int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };

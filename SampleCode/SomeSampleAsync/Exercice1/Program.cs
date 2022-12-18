@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -113,6 +114,48 @@ namespace Exercice1
             var sumWithLinq = numbers.Sum();
             timer.Stop();
             Console.WriteLine("{0} Elapsed time to get sum using Linq", timer.Elapsed.ToString());
+
+            // Step 6
+            Console.WriteLine();
+            Console.WriteLine("--------------------");
+            Console.WriteLine("STEP 6 :");
+            List<string> filePaths = new List<string>
+            {
+                "file1.txt",
+                "file2.txt"
+            };
+
+            var numberOfWordsFile1 = 0;
+            var numberOfWordsFile2 = 0;
+
+            Action taskFile1 = () =>
+            {
+                string[] contents = File.ReadAllLines(filePaths[0]);
+
+                Parallel.ForEach(contents, (content) =>
+                {
+                    var words = content.Split(" ");
+                    numberOfWordsFile1 += words.Length;
+                    Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
+                });
+            };
+
+            Action taskFile2 = () =>
+            {
+                string[] contents = File.ReadAllLines(filePaths[1]);
+
+                Parallel.ForEach(contents, (content) =>
+                {
+                    var words = content.Split(" ");
+                    numberOfWordsFile2 += words.Length;
+                    Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
+                });
+            };
+
+            Parallel.Invoke(taskFile1, taskFile2);
+
+            Console.WriteLine("Number of words for file 1 : {0}", numberOfWordsFile1.ToString());
+            Console.WriteLine("Number of words for file 2 : {0}", numberOfWordsFile2.ToString());
         }
     }
 }
