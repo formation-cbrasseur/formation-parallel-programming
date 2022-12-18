@@ -1,48 +1,65 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SomeSampleAsync;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using WebApi.Model;
 using static SomeSampleAsync.ApiAsyncMethods;
 
 var timer = new Stopwatch();
 // First sample using async and await, both calls are waited but done in the same time
-await SimpleAsyncUsage.SimpleAsyncCall();
-Thread.Sleep(4000);
+//await SimpleAsyncUsage.SimpleAsyncCall();
 
 // Second sample comparing time of 4 different usage of async
 //try
 //{
 
-//    // Version 1
-//    Console.WriteLine("First way to use Async");
-//    timer.Start();
-//    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV1("Some string"));
-//    timer.Stop();
-//    Console.WriteLine("{0} Elapsed time V1", timer.Elapsed.ToString());
+//    //// Version 1
+//    //Console.WriteLine("First way to use Async");
+//    //timer.Start();
+//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV1("Some string"));
+//    //timer.Stop();
+//    //Console.WriteLine("{0} Elapsed time V1", timer.Elapsed.ToString());
 
-//    // Version 2
-//    Console.WriteLine("Second way to use Async");
-//    timer.Reset();
-//    timer.Start();
-//    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV2("Some string"));
-//    timer.Stop();
-//    Console.WriteLine("{0} Elapsed time V2", timer.Elapsed.ToString());
+//    //// Version 2
+//    //Console.WriteLine("Second way to use Async");
+//    //timer.Reset();
+//    //timer.Start();
+//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV2("Some string"));
+//    //timer.Stop();
+//    //Console.WriteLine("{0} Elapsed time V2", timer.Elapsed.ToString());
 
-//    // Version 3
-//    Console.WriteLine("Thrird way to use Async");
-//    timer.Reset();
-//    timer.Start();
-//    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV3("Some string"));
-//    timer.Stop();
-//    Console.WriteLine("{0} Elapsed time V3", timer.Elapsed.ToString());
+//    ////Version 3
+//    //Console.WriteLine("Thrird way to use Async");
+//    //timer.Reset();
+//    //timer.Start();
+//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV3("Some string"));
+//    //timer.Stop();
+//    //Console.WriteLine("{0} Elapsed time V3", timer.Elapsed.ToString());
 
-//    // Version 4
-//    Console.WriteLine("Fourth way to use Async");
-//    timer.Reset();
-//    timer.Start();
-//    Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV4("Some string"));
-//    timer.Stop();
-//    Console.WriteLine("{0} Elapsed time V4", timer.Elapsed.ToString());
+//// Version 4
+//Console.WriteLine("Fourth way to use Async");
+//timer.Reset();
+//timer.Start();
+//Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV4("Some string"));
+//timer.Stop();
+//Console.WriteLine("{0} Elapsed time V4", timer.Elapsed.ToString());
+
+//// Version 5
+//Console.WriteLine("Fifth way to use Async");
+//timer.Reset();
+//timer.Start();
+//Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV5("Some string"));
+//timer.Stop();
+//Console.WriteLine("{0} Elapsed time V5", timer.Elapsed.ToString());
+
+
+//// Using Task.Factory to create and start a task at the same time
+//Task<int> task = Task.Factory.StartNew(() => { 
+//    return new Random().Next(1, 10); }
+//);
+//int result = task.Result;
+//Console.WriteLine("Result {0}", result);
+
 //}
 //catch (Exception ex)
 //{
@@ -169,7 +186,7 @@ Thread.Sleep(4000);
 
 //Parallel.Invoke(task1, task2);
 
-// Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
+//Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
 //Task<Double>[] taskArray = {
 //    Task<Double>.Factory.StartNew(() => DoComputation(1.0)),
 //    Task<Double>.Factory.StartNew(() => DoComputation(100.0)),
