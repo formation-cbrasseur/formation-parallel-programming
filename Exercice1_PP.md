@@ -36,7 +36,7 @@ timer.Reset();
 - Démarrer à nouveau votre programme et observez la sortie.
 
 ### Step 5 : First usage of aggregate with Parallel.Invoke
-- Calculer la somme des valeurs de 1 à 10 en utilisant Parallel.Invoke & Aggregate
+- Calculer la somme des valeurs de 1 à 100 en utilisant Parallel.Invoke & Aggregate
 - Affichez le résultat du calcul
 - Réaliser la même opération en utilisant directement 
 ```
