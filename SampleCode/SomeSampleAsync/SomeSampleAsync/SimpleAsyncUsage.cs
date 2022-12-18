@@ -8,7 +8,7 @@ namespace SomeSampleAsync
 {
     public static class SimpleAsyncUsage
     {
-        public static async void SimpleAsyncCall()
+        public static async Task SimpleAsyncCall()
         {
             try
             {
