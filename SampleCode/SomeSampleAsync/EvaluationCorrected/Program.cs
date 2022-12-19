@@ -1,8 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Diagnostics;
-
-Console.WriteLine("Hello, World!");
-
 //-Faire un calcul de la somme de tous les nombres entre 1 et 3000 en opération parallèle
 //- Ce premier calcul doit être effectué en amont (pas en parallèle des deux prochains)
 //-Traiter deux fichiers pour compter le nombre de mots
