@@ -77,10 +77,10 @@ Task<int> taskLineFile2 = Task.Factory.StartNew(() =>
 
 await Task.WhenAll(taskWordFile1, taskLineFile1, taskWordFile2, taskLineFile2);
 
-var numberOfWordsFile1 = await taskWordFile1;
-var numberOfLinesFile1 = await taskLineFile1;
-var numberOfWordsFile2 = await taskWordFile2;
-var numberOfLinesFile2 = await taskLineFile2;
+var numberOfWordsFile1 = taskWordFile1.Result;
+var numberOfLinesFile1 = taskLineFile1.Result;
+var numberOfWordsFile2 = taskWordFile2.Result;
+var numberOfLinesFile2 = taskLineFile2.Result;
 
 Console.WriteLine("Number of words for file 1 : {0}", numberOfWordsFile1.ToString());
 Console.WriteLine("Number of lines for file 1 : {0}", numberOfLinesFile1.ToString());

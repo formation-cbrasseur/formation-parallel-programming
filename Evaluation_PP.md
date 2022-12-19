@@ -18,3 +18,7 @@ En utilisant le parallélisme, réalisez le workflow vu sur slides, dont voici q
 - Afficher le nombre d'occurences de "Lorem ipsum" des deux fichiers
 - Réaliser une opérations finale qui affiche la somme des 5 nombres résultats précédents
 - Afficher les informations pour chaque étape, celle du résultat finale attendu et le temps de traitement dans la Console
+
+## PS
+- Attention à ce que votre résultat soit TOUJOURS cohérent à chaque exécution de votre code. 
+- Je dis ça, car en fonction de comment vous allez gérer vos opérations, vous risquez d'avoir des suprises.
