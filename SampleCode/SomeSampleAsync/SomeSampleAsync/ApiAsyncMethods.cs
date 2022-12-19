@@ -67,5 +67,19 @@ namespace SomeSampleAsync
 
             return weather.summary;
         }
+
+        internal class TestFastEndpoint
+        {
+            public string test { get; set; }
+        }
+
+        public static async Task<string> GetTest(HttpClient client)
+        {
+            HttpResponseMessage response = await client.GetAsync("https://localhost:5001/api/test");
+            var jsonContent = await response.Content.ReadAsStringAsync();
+            var test = JsonSerializer.Deserialize<TestFastEndpoint>(jsonContent);
+
+            return test.test;
+        }
     }
 }

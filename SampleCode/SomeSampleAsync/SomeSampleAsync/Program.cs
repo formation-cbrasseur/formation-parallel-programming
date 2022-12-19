@@ -238,24 +238,30 @@ var timer = new Stopwatch();
 //highSalaryEmployees.ForAll(e => Console.WriteLine("{0} has a high salary.", e.Name));
 
 // Combine PLinq and Task
-var highSalaryEmployeesTask = Task.Factory.StartNew(() =>
-{
-    var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
-    return highSalaryEmployees.ToList();
-});
+//var highSalaryEmployeesTask = Task.Factory.StartNew(() =>
+//{
+//    var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
+//    return highSalaryEmployees.ToList();
+//});
 
-await highSalaryEmployeesTask.ContinueWith(task =>
-{
-    foreach (var employee in task.Result)
-    {
-        Console.WriteLine("{0} has a high salary.", employee.Name);
-    }
-});
+//await highSalaryEmployeesTask.ContinueWith(task =>
+//{
+//    foreach (var employee in task.Result)
+//    {
+//        Console.WriteLine("{0} has a high salary.", employee.Name);
+//    }
+//});
 
 //HttpClient client = new HttpClient();
 
 //var stopwatch = new Stopwatch();
 //stopwatch.Start();
+
+// FastEndpoint test sample of code
+//HttpClient client = new HttpClient();
+//var testTask = ApiAsyncMethods.GetTest(client);
+//var testResult = await testTask;
+//Console.WriteLine("Test result value {0}", testResult);
 
 ////// Way to wait on each task to be done one by one, should use at least 3000 ms
 ////var facebookFollowers = await ApiAsyncMethods.GetFacebookFollowers(client);
@@ -269,9 +275,9 @@ await highSalaryEmployeesTask.ContinueWith(task =>
 
 //await Task.WhenAll(facebookFollowersTask, twitterFollowersTask, instagramFollowersTask);
 
-////var facebookFollowers = await facebookFollowersTask;
-////var twitterFollowers = await twitterFollowersTask;
-////var instagramFollowers = await instagramFollowersTask;
+//var facebookFollowers = await facebookFollowersTask;
+//var twitterFollowers = await twitterFollowersTask;
+//var instagramFollowers = await instagramFollowersTask;
 
 //// Other way with .Result
 //var facebookFollowers = facebookFollowersTask.Result;
@@ -280,6 +286,8 @@ await highSalaryEmployeesTask.ContinueWith(task =>
 
 //var user = new User("UserName", facebookFollowers, twitterFollowers, instagramFollowers);
 //Console.WriteLine(user.ToString());
+//stopwatch.Stop();
+//Console.WriteLine("Time elapsed : {0}", stopwatch.ElapsedMilliseconds);
 
 //// Forecast sample code, done 100 times
 //for (int i = 0; i <= 100; i++)
@@ -297,11 +305,8 @@ await highSalaryEmployeesTask.ContinueWith(task =>
 //    Console.WriteLine($"Iteration {i}, Result {weatherResult}");
 //});
 
-//stopwatch.Stop();
-//Console.WriteLine("Time elapsed : {0}", stopwatch.ElapsedMilliseconds);
-
 //// Handling Exceptions when we do asynchronous calls :
-//// Doing it like this won't give us all exceptions that happens, only the first one.
+// Doing it like this won't give us all exceptions that happens, only the first one.
 //try
 //{
 //    var task = new TaskCompletionSource<int>();
@@ -335,3 +340,52 @@ await highSalaryEmployeesTask.ContinueWith(task =>
 //    Console.WriteLine(ex.Message);
 //}
 
+//TaskCompletionSource<int> tcs1 = new TaskCompletionSource<int>();
+//Task<int> t1 = tcs1.Task;
+
+//// Start a background task that will complete tcs1.Task
+//Task.Factory.StartNew(() =>
+//{
+//    Thread.Sleep(1000);
+//    tcs1.SetResult(15);
+//});
+
+//// The attempt to get the result of t1 blocks the current thread until the completion source gets signaled.
+//// It should be a wait of ~1000 ms.
+//Stopwatch sw = Stopwatch.StartNew();
+//int result = t1.Result;
+//sw.Stop();
+
+//Console.WriteLine("(ElapsedTime={0}): t1.Result={1} (expected 15) ", sw.ElapsedMilliseconds, result);
+
+//// ------------------------------------------------------------------
+
+//// Alternatively, an exception can be manually set on a TaskCompletionSource.Task
+//TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>();
+//Task<int> t2 = tcs2.Task;
+
+//// Start a background Task that will complete tcs2.Task with an exception
+//Task.Factory.StartNew(() =>
+//{
+//    Thread.Sleep(1000);
+//    tcs2.SetException(new InvalidOperationException("SIMULATED EXCEPTION"));
+//});
+
+// The attempt to get the result of t2 blocks the current thread until the completion source gets signaled with either a result or an exception.
+// In either case it should be a wait of ~1000 ms.
+//sw = Stopwatch.StartNew();
+//try
+//{
+//    result = t2.Result;
+
+//    Console.WriteLine("t2.Result succeeded. THIS WAS NOT EXPECTED.");
+//}
+//catch (AggregateException e)
+//{
+//    Console.Write("(ElapsedTime={0}): ", sw.ElapsedMilliseconds);
+//    Console.WriteLine("The following exceptions have been thrown by t2.Result: (THIS WAS EXPECTED)");
+//    for (int j = 0; j < e.InnerExceptions.Count; j++)
+//    {
+//        Console.WriteLine("\n-------------------------------------------------\n{0}", e.InnerExceptions[j].ToString());
+//    }
+//}
