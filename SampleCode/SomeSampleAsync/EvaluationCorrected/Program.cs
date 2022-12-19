@@ -8,7 +8,7 @@ Console.WriteLine("Hello, World!");
 //-Traiter deux fichiers pour compter le nombre de mots
 //- Traiter deux fichiers pour compter d'occurences de "Lorem ipsum"
 //- Afficher le cumul des mots des deux fichiers (séparateur " ")
-//-Afficher le cumul d'occurences de "Lorem ipsum" (A vous de trouver un moyen de réaliser cette étape)
+//-Afficher le cumul d'occurences de "Lorem ipsum" (A vous de trouver un moyen de réaliser cette étape) ==> TODO, needs adaptation
 //- Afficher le résultat du calcul de la somme des nombres entre 1 et 3000
 //- Réaliser une opérations finale qui affiche le cumul des 3 nombres résultats précédents.
 //- Afficher les informations pour chaque étape, celle du résultat finale attendu et le temps de traitement dans la Console
@@ -34,56 +34,56 @@ List<string> filePaths = new List<string>
     "Eval_file2.txt"
 };
 
-var numberOfWordsFile1 = 0;
-var numberOfLinesFile1 = 0;
-var numberOfWordsFile2 = 0;
-var numberOfLinesFile2 = 0;
+Task<int> taskWordFile1 = Task.Factory.StartNew(() =>
+{
+    string[] contents = File.ReadAllLines(filePaths[0]);
+    var number = 0;
 
-Action taskWordFile1 = () =>
+    foreach(var content in contents)
+    {
+        var words = content.Split(" ");
+        number += words.Length;
+    }
+
+    return number;
+});
+
+
+Task<int> taskWordFile2 = Task.Factory.StartNew(() =>
+{
+    string[] contents = File.ReadAllLines(filePaths[1]);
+    var number = 0;
+
+    foreach (var content in contents)
+    {
+        var words = content.Split(" ");
+        number += words.Length;
+    }
+
+    return number;
+});
+
+Task<int> taskLineFile1 = Task.Factory.StartNew(() =>
 {
     string[] contents = File.ReadAllLines(filePaths[0]);
 
-    Parallel.ForEach(contents, (content) =>
-    {
-        var words = content.Split(" ");
-        numberOfWordsFile1 += words.Length;
-    });
-};
+    return contents.Length;
+});
 
-Action taskWordFile2 = () =>
+
+Task<int> taskLineFile2 = Task.Factory.StartNew(() =>
 {
     string[] contents = File.ReadAllLines(filePaths[1]);
 
-    Parallel.ForEach(contents, (content) =>
-    {
-        var words = content.Split(" ");
-        numberOfWordsFile2 += words.Length;
-    });
-};
+    return contents.Length;
+});
 
-Action taskLineFile1 = () =>
-{
-    string[] contents = File.ReadAllLines(filePaths[0]);
+await Task.WhenAll(taskWordFile1, taskLineFile1, taskWordFile2, taskLineFile2);
 
-    Parallel.ForEach(contents, (content) =>
-    {
-        var lines = content.Split(".");
-        numberOfLinesFile1 += lines.Length;
-    });
-};
-
-Action taskLineFile2 = () =>
-{
-    string[] contents = File.ReadAllLines(filePaths[1]);
-
-    Parallel.ForEach(contents, (content) =>
-    {
-        var lines = content.Split(".");
-        numberOfLinesFile2 += lines.Length;
-    });
-};
-
-Parallel.Invoke(taskWordFile1, taskWordFile2, taskLineFile1, taskLineFile2);
+var numberOfWordsFile1 = await taskWordFile1;
+var numberOfLinesFile1 = await taskLineFile1;
+var numberOfWordsFile2 = await taskWordFile2;
+var numberOfLinesFile2 = await taskLineFile2;
 
 Console.WriteLine("Number of words for file 1 : {0}", numberOfWordsFile1.ToString());
 Console.WriteLine("Number of lines for file 1 : {0}", numberOfLinesFile1.ToString());
