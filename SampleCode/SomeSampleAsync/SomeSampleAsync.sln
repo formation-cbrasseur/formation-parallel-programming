@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SomeSampleAsync", "SomeSamp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice1", "Exercice1\Exercice1.csproj", "{9415C67E-B82E-4BE4-98A9-4D50A00DA879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakfastPreparation", "BreakfastPreparation\BreakfastPreparation.csproj", "{5B92F453-9C4A-4207-8241-B2394A031170}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreakfastPreparation", "BreakfastPreparation\BreakfastPreparation.csproj", "{5B92F453-9C4A-4207-8241-B2394A031170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakfastPreparationAsync", "BreakfastPreparationAsync\BreakfastPreparationAsync.csproj", "{F5162A76-EF2B-4A0A-B047-9A74BE2CFE1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BreakfastPreparationAsync", "BreakfastPreparationAsync\BreakfastPreparationAsync.csproj", "{F5162A76-EF2B-4A0A-B047-9A74BE2CFE1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice2", "Exercice2\Exercice2.csproj", "{D122E1D5-D17B-488C-AB8B-3DA54AEB429B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F5162A76-EF2B-4A0A-B047-9A74BE2CFE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5162A76-EF2B-4A0A-B047-9A74BE2CFE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5162A76-EF2B-4A0A-B047-9A74BE2CFE1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D122E1D5-D17B-488C-AB8B-3DA54AEB429B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D122E1D5-D17B-488C-AB8B-3DA54AEB429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D122E1D5-D17B-488C-AB8B-3DA54AEB429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D122E1D5-D17B-488C-AB8B-3DA54AEB429B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

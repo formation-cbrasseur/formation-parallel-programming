@@ -147,15 +147,15 @@ var timer = new Stopwatch();
 //});
 
 //// Some other sample of code with a return value
-    var sumNumbers = 0;
-    Parallel.Invoke(() =>
-    {
-        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//var sumNumbers = 0;
+//Parallel.Invoke(() =>
+//{
+//    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-        sumNumbers = numbers.Aggregate((total, next) => total + next);
-    });
+//    sumNumbers = numbers.Aggregate((total, next) => total + next);
+//});
 
-    Console.WriteLine($"The sum of the numbers is: {sumNumbers}");
+//Console.WriteLine($"The sum of the numbers is: {sumNumbers}");
 
 // Reading files asynchrounously
 //List<string> filePaths = new List<string>
@@ -191,60 +191,66 @@ var timer = new Stopwatch();
 // Same but with Parallel.Invoke
 // Task one do a ToUpper on all contents and put it in console
 // Task two do a ToLower on the all the contents and put it in console
-Action task1 = () =>
-{
-    string[] contents = File.ReadAllLines(filePaths[0]);
+//Action task1 = () =>
+//{
+//    string[] contents = File.ReadAllLines(filePaths[0]);
 
-    Parallel.ForEach(contents, (content) =>
-    {
-        Console.WriteLine("Upper : {0}", content.ToUpper());
-    });
-};
+//    Parallel.ForEach(contents, (content) =>
+//    {
+//        Console.WriteLine("Upper : {0}", content.ToUpper());
+//    });
+//};
 
-Action task2 = () =>
-{
-    string[] contents = File.ReadAllLines(filePaths[1]);
+//Action task2 = () =>
+//{
+//    string[] contents = File.ReadAllLines(filePaths[1]);
 
-    Parallel.ForEach(contents, (content) =>
-    {
-        Console.WriteLine("Lower : {0}", content.ToLower());
-    });
-};
+//    Parallel.ForEach(contents, (content) =>
+//    {
+//        Console.WriteLine("Lower : {0}", content.ToLower());
+//    });
+//};
 
-Parallel.Invoke(task1, task2);
+//Parallel.Invoke(task1, task2);
 
-// Parallel with Linq
+//// Parallel with Linq
 //int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 //var evenNumbers = numbers.AsParallel().Where(n => n % 2 == 0);
 //evenNumbers.ForAll(n => Console.WriteLine(n));
 
-//// Other sample of code using PLinq
+//var source = Enumerable.Range(1, 1000);
+//var orderedQuery = source.AsParallel().AsOrdered().Where(n => n % 2 == 0);
+
+//// Use foreach to preserve order at execution time.
+//orderedQuery.ToList().ForEach(number => Console.WriteLine("number : {0}", number));
+
+// Other sample of code using PLinq
 //List<Employee> employees = new List<Employee>
-//{
-//    new Employee { Name = "John", Salary = 50000 },
-//    new Employee { Name = "Jane", Salary = 60000 },
-//    new Employee { Name = "Adam", Salary = 70000 },
-//    new Employee { Name = "Eve", Salary = 80000 }
-//};
-
-////var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
-
-////highSalaryEmployees.ForAll(e => Console.WriteLine("{0} has a high salary.", e.Name));
-
-//// Combine PLinq and Task
-//var highSalaryEmployeesTask = Task.Factory.StartNew(() =>
-//{
-//    var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
-//    return highSalaryEmployees.ToList();
-//});
-
-//await highSalaryEmployeesTask.ContinueWith(task =>
-//{
-//    foreach (var employee in task.Result)
 //    {
-//        Console.WriteLine("{0} has a high salary.", employee.Name);
-//    }
-//});
+//        new Employee { Name = "John", Salary = 50000 },
+//        new Employee { Name = "Jane", Salary = 60000 },
+//        new Employee { Name = "Adam", Salary = 70000 },
+//        new Employee { Name = "Eve", Salary = 80000 }
+//    };
+
+//var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
+
+//highSalaryEmployees.ForAll(e => Console.WriteLine("{0} has a high salary.", e.Name));
+
+// Combine PLinq and Task
+var highSalaryEmployeesTask = Task.Factory.StartNew(() =>
+{
+    var highSalaryEmployees = employees.AsParallel().Where(e => e.Salary > 65000);
+    return highSalaryEmployees.ToList();
+});
+
+await highSalaryEmployeesTask.ContinueWith(task =>
+{
+    foreach (var employee in task.Result)
+    {
+        Console.WriteLine("{0} has a high salary.", employee.Name);
+    }
+});
 
 //HttpClient client = new HttpClient();
 
