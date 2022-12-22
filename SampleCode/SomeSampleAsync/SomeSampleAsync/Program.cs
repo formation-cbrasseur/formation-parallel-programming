@@ -5,38 +5,38 @@ using System.Reflection.Metadata.Ecma335;
 using WebApi.Model;
 using static SomeSampleAsync.ApiAsyncMethods;
 
-var timer = new Stopwatch();
-// First sample using async and await, both calls are waited but done in the same time
+//var timer = new Stopwatch();
+////First sample using async and await, both calls are waited but done in the same time
 //await SimpleAsyncUsage.SimpleAsyncCall();
 
-// Second sample comparing time of 4 different usage of async
+////Second sample comparing time of 4 different usage of async
 //try
 //{
 
-//    //// Version 1
-//    //Console.WriteLine("First way to use Async");
-//    //timer.Start();
-//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV1("Some string"));
-//    //timer.Stop();
-//    //Console.WriteLine("{0} Elapsed time V1", timer.Elapsed.ToString());
+//// Version 1
+//Console.WriteLine("First way to use Async");
+//timer.Start();
+//Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV1("Some string"));
+//timer.Stop();
+//Console.WriteLine("{0} Elapsed time V1", timer.Elapsed.ToString());
 
-//    //// Version 2
-//    //Console.WriteLine("Second way to use Async");
-//    //timer.Reset();
-//    //timer.Start();
-//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV2("Some string"));
-//    //timer.Stop();
-//    //Console.WriteLine("{0} Elapsed time V2", timer.Elapsed.ToString());
+////// Version 2
+//Console.WriteLine("Second way to use Async");
+//timer.Reset();
+//timer.Start();
+//Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV2("Some string"));
+//timer.Stop();
+//Console.WriteLine("{0} Elapsed time V2", timer.Elapsed.ToString());
 
-//    ////Version 3
-//    //Console.WriteLine("Thrird way to use Async");
-//    //timer.Reset();
-//    //timer.Start();
-//    //Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV3("Some string"));
-//    //timer.Stop();
-//    //Console.WriteLine("{0} Elapsed time V3", timer.Elapsed.ToString());
+//////Version 3
+//Console.WriteLine("Thrird way to use Async");
+//timer.Reset();
+//timer.Start();
+//Console.WriteLine("RandomNumber-UpperString : {0}", await WaysToUseAsync.DoTasksV3("Some string"));
+//timer.Stop();
+//Console.WriteLine("{0} Elapsed time V3", timer.Elapsed.ToString());
 
-//// Version 4
+////// Version 4
 //Console.WriteLine("Fourth way to use Async");
 //timer.Reset();
 //timer.Start();
@@ -54,8 +54,10 @@ var timer = new Stopwatch();
 
 
 //// Using Task.Factory to create and start a task at the same time
-//Task<int> task = Task.Factory.StartNew(() => { 
-//    return new Random().Next(1, 10); }
+//Task<int> task = Task.Factory.StartNew(() =>
+//{
+//    return new Random().Next(1, 10);
+//}
 //);
 //int result = task.Result;
 //Console.WriteLine("Result {0}", result);
@@ -66,7 +68,7 @@ var timer = new Stopwatch();
 //    Console.WriteLine(ex.ToString());
 //}
 
-//Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
+////Doing a sample computation using Factory.StartNew and doig Tasks in a for loop.
 //Task<Double>[] taskArray = {
 //    Task<Double>.Factory.StartNew(() => DoComputation(1.0)),
 //    Task<Double>.Factory.StartNew(() => DoComputation(100.0)),
@@ -252,21 +254,20 @@ var timer = new Stopwatch();
 //    }
 //});
 
-//HttpClient client = new HttpClient();
+HttpClient client = new HttpClient();
 
-//var stopwatch = new Stopwatch();
-//stopwatch.Start();
+var stopwatch = new Stopwatch();
+stopwatch.Start();
 
-// FastEndpoint test sample of code
-//HttpClient client = new HttpClient();
+//FastEndpoint test sample of code
 //var testTask = ApiAsyncMethods.GetTest(client);
 //var testResult = await testTask;
 //Console.WriteLine("Test result value {0}", testResult);
 
-////// Way to wait on each task to be done one by one, should use at least 3000 ms
-////var facebookFollowers = await ApiAsyncMethods.GetFacebookFollowers(client);
-////var twitterFollowers = await ApiAsyncMethods.GetTwitterFollowers(client);
-////var instagramFollowers = await ApiAsyncMethods.GetInstagramFollowers(client);
+//// Way to wait on each task to be done one by one, should use at least 3000 ms
+//var facebookFollowers = await ApiAsyncMethods.GetFacebookFollowers(client);
+//var twitterFollowers = await ApiAsyncMethods.GetTwitterFollowers(client);
+//var instagramFollowers = await ApiAsyncMethods.GetInstagramFollowers(client);
 
 //// Way to do all call asynchronously, should use around 1000ms because all operations are done at the same time
 //var facebookFollowersTask = ApiAsyncMethods.GetFacebookFollowers(client);
@@ -279,10 +280,10 @@ var timer = new Stopwatch();
 //var twitterFollowers = await twitterFollowersTask;
 //var instagramFollowers = await instagramFollowersTask;
 
-//// Other way with .Result
-//var facebookFollowers = facebookFollowersTask.Result;
-//var twitterFollowers = twitterFollowersTask.Result;
-//var instagramFollowers = instagramFollowersTask.Result;
+////// Other way with .Result
+////var facebookFollowers = facebookFollowersTask.Result;
+////var twitterFollowers = twitterFollowersTask.Result;
+////var instagramFollowers = instagramFollowersTask.Result;
 
 //var user = new User("UserName", facebookFollowers, twitterFollowers, instagramFollowers);
 //Console.WriteLine(user.ToString());
@@ -290,20 +291,25 @@ var timer = new Stopwatch();
 //Console.WriteLine("Time elapsed : {0}", stopwatch.ElapsedMilliseconds);
 
 //// Forecast sample code, done 100 times
-//for (int i = 0; i <= 100; i++)
+//for (int i = 0; i <= 1000; i++)
 //{
 //    var weatherTask = ApiAsyncMethods.GetWeatherRandom(client);
 //    var weatherResult = await weatherTask;
 //    Console.WriteLine($"Iteration {i}, Result {weatherResult}");
 //}
 
+//stopwatch.Stop();
+//Console.WriteLine("Time elapsed : {0}", stopwatch.ElapsedMilliseconds);
+
 //// Forecast sample code, done 100 times in parallel, be carefull in this case it's not always faster
 //// And this can cause deadlocks !!!!!!!!!!!
-//Parallel.For(0, 100, async (i) =>
+//Parallel.For(0, 1000, async (i) =>
 //{
 //    var weatherResult = await ApiAsyncMethods.GetWeatherRandom(client);
 //    Console.WriteLine($"Iteration {i}, Result {weatherResult}");
 //});
+
+//Thread.Sleep(5000);
 
 //// Handling Exceptions when we do asynchronous calls :
 // Doing it like this won't give us all exceptions that happens, only the first one.

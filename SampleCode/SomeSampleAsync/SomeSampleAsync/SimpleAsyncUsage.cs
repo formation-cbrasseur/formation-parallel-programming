@@ -15,14 +15,26 @@ namespace SomeSampleAsync
                 var client = new HttpClient();
                 string[] results = await Task.WhenAll(
                     client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
+                    client.GetStringAsync("https://official-joke-api.appspot.com/random_joke"),
                     client.GetStringAsync("https://official-joke-api.appspot.com/random_joke")
                 );
 
-                Console.WriteLine("First joke");
-                Console.WriteLine(results[0]);
+                foreach (var item in results)
+                {
+                    Console.WriteLine("Joke : {0}", item);
+                }
 
-                Console.WriteLine("Second joke");
-                Console.WriteLine(results[1]);
+                //Console.WriteLine("First joke");
+                //Console.WriteLine(results[0]);
+
+                //Console.WriteLine("Second joke");
+                //Console.WriteLine(results[1]);
             }
             catch (Exception ex)
             {

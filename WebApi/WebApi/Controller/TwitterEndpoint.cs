@@ -6,8 +6,7 @@ namespace WebApi.Controller
     {
         public override void Configure()
         {
-            Verbs(Http.GET);
-            Routes("Twitter");
+            Get("Twitter");
             AllowAnonymous();
         }
 

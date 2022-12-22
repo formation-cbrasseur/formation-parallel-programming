@@ -12,8 +12,7 @@ namespace WebApi.Controller
 
         public override void Configure()
         {
-            Verbs(Http.GET);
-            Routes("Weather");
+            Get("Weather");
             AllowAnonymous();
         }
 

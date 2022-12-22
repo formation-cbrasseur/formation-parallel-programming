@@ -6,8 +6,7 @@ namespace WebApi.Controller
     {
         public override void Configure()
         {
-            Verbs(Http.GET);
-            Routes("Instagram");
+            Get("Instagram");
             AllowAnonymous();
         }
 
