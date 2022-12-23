@@ -21,4 +21,3 @@ En utilisant le parallélisme, réalisez le workflow vu sur slides, dont voici q
 
 ## PS
 - Attention à ce que votre résultat soit TOUJOURS cohérent à chaque exécution de votre code. 
-- Je dis ça, car en fonction de comment vous allez gérer vos opérations, vous risquez d'avoir des suprises.
