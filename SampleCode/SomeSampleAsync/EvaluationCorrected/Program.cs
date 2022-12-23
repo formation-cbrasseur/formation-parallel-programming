@@ -13,16 +13,20 @@ using System.Diagnostics;
 var timer = new Stopwatch();
 timer.Start();
 
-// Calculate somme between all numbers from 1 to 1000
 var sumNumbers = 0;
-Parallel.Invoke(() =>
-{
-    var numbers = Enumerable.Range(1,3000);
 
-    sumNumbers = numbers.Aggregate((total, next) => total + next);
+var calculationTask = Task<int>.Factory.StartNew(() =>
+{
+    var numbers = Enumerable.Range(1, 3000);
+    return numbers.Sum();
 });
 
-Console.WriteLine("Sum between all numbers from 1 to 3000 : {0}", sumNumbers);
+await calculationTask.ContinueWith(number =>
+{
+    Console.WriteLine("Sum between all numbers from 1 to 3000 : {0}", number.Result);
+});
+
+sumNumbers = calculationTask.Result;
 
 // Doing calculation on files asynchronously
 List<string> filePaths = new List<string>

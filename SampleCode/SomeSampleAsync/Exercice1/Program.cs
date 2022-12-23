@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
@@ -13,149 +14,168 @@ namespace Exercice1
     {
         static void Main(string[] args)
         {
-            // Step 1
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 1 :");
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            Parallel.ForEach(numbers, (number) =>
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Processing number: {number}");
-            });
+            //// Step 1
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 1 :");
+            //List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //var numbersRange = Enumerable.Range(1, 10);
 
-            // Step 2
-            Console.WriteLine();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 2 :");
-            var timer = new Stopwatch();
+            //Parallel.ForEach(numbers, (number) =>
+            //{
+            //    Thread.Sleep(1000);
+            //    Console.WriteLine($"Processing number: {number}");
+            //});
 
-            timer.Start();
-            Parallel.ForEach(numbers, (number) =>
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Processing number: {number}");
-            });
-            timer.Stop();
-            Console.WriteLine("{0} Elapsed time to process 10 integers", timer.Elapsed.ToString());
+            ////Step 2
+            //Console.WriteLine();
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 2 :");
+            //var timer = new Stopwatch();
 
-            // Step 3 
-            Console.WriteLine();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 3 :");
-            timer.Reset();
+            //timer.Start();
+            //Parallel.ForEach(numbers, (number) =>
+            //{
+            //    Thread.Sleep(1000);
+            //    Console.WriteLine($"Processing number: {number}");
+            //});
 
-            timer.Start();
-            Parallel.For(0, numbers.Count, (i) =>
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Processing number: {numbers[i]}");
-            });
-            timer.Stop();
-            Console.WriteLine("{0} Elapsed time to process 10 integers with Parallel.For", timer.Elapsed.ToString());
+            //timer.Stop();
+            //Console.WriteLine("{0} Elapsed time to process 10 integers Parallel", timer.Elapsed.ToString());
 
-            // Step 4
-            Console.WriteLine();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 4 :");
-            timer.Reset();
-            Console.WriteLine("Using Action class to run 2 parallel methods : Starting timer");
-            timer.Start();
+            //timer.Reset();
+            //timer.Start();
+            //// Simple foreach sur la liste
+            //numbers.ForEach(number =>
+            //{
+            //    Thread.Sleep(1000);
+            //    Console.WriteLine($"Processing number: {number}");
+            //});
 
-            Action task1 = () =>
-            {
-                List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //timer.Stop();
+            //Console.WriteLine("{0} Elapsed time to process 10 integers ForEach", timer.Elapsed.ToString());
 
-                Parallel.ForEach(numbers, (number) =>
-                {
-                    Console.WriteLine($"Processing number: {number}");
-                });
-                Console.WriteLine("Task 1 is running.");
-                Thread.Sleep(1000);
-            };
+            //// Step 3 
+            //Console.WriteLine();
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 3 :");
+            //timer.Reset();
 
-            Action task2 = () =>
-            {
-                List<int> numbers = new List<int> { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            //timer.Start();
+            //Parallel.For(0, numbers.Count, (number) =>
+            //{
+            //    Thread.Sleep(1000);
+            //    Console.WriteLine($"Processing number: {numbers[number]}");
+            //});
+            //timer.Stop();
+            //Console.WriteLine("{0} Elapsed time to process 10 integers with Parallel.For", timer.Elapsed.ToString());
 
-                Parallel.ForEach(numbers, (number) =>
-                {
-                    Console.WriteLine($"Processing number: {number}");
-                });
-                Console.WriteLine("Task 2 is running.");
-                Thread.Sleep(1500);
-            };
+            //// Step 4
+            //Console.WriteLine();
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 4 :");
+            //timer.Reset();
+            //Console.WriteLine("Using Action class to run 2 parallel methods : Starting timer");
+            //timer.Start();
 
-            // Use the Parallel.Invoke method to run the tasks concurrently.
-            Parallel.Invoke(task1, task2);
-            timer.Stop();
+            //Action task1 = () =>
+            //{
+            //    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            Console.WriteLine("{0} Elapsed time to run 2 actions using Parallel.Invoke", timer.Elapsed.ToString());
+            //    Console.WriteLine("Task 1 is running.");
+            //    Parallel.ForEach(numbers, (number) =>
+            //    {
+            //        Console.WriteLine($"Processing number: {number}");
+            //    });
+            //    Thread.Sleep(1000);
+            //};
 
-            // Step 5
-            Console.WriteLine();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 5 :");
+            //Action task2 = () =>
+            //{
+            //    List<int> numbers = new List<int> { 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
-            var sumNumbers = 0;
-            timer.Reset();
-            timer.Start();
-            Parallel.Invoke(() =>
-            {
-                List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //    Console.WriteLine("Task 2 is running.");
+            //    Parallel.ForEach(numbers, (number) =>
+            //    {
+            //        Console.WriteLine($"Processing number: {number}");
+            //    });
+            //    Thread.Sleep(1500);
+            //};
 
-                sumNumbers = numbers.Aggregate((total, next) => total + next);
-            });
-            timer.Stop();
-            Console.WriteLine("{0} Elapsed time to get sum using Parallel.Invoke", timer.Elapsed.ToString());
+            //// Use the Parallel.Invoke method to run the actions concurrently.
+            //Parallel.Invoke(task1, task2);
+            //timer.Stop();
 
-            timer.Reset();
-            timer.Start();
-            var sumWithLinq = numbers.Sum();
-            timer.Stop();
-            Console.WriteLine("{0} Elapsed time to get sum using Linq", timer.Elapsed.ToString());
+            //Console.WriteLine("{0} Elapsed time to run 2 actions using Parallel.Invoke", timer.Elapsed.ToString());
 
-            // Step 6
-            Console.WriteLine();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("STEP 6 :");
-            List<string> filePaths = new List<string>
-            {
-                "file1.txt",
-                "file2.txt"
-            };
+            //// Step 5
+            //Console.WriteLine();
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 5 :");
 
-            var numberOfWordsFile1 = 0;
-            var numberOfWordsFile2 = 0;
+            //var sumNumbers = 0;
+            //timer.Reset();
+            //timer.Start();
 
-            Action taskFile1 = () =>
-            {
-                string[] contents = File.ReadAllLines(filePaths[0]);
+            //Action action = () =>
+            //{
+            //    List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //    sumNumbers = numbers.Aggregate((total, next) => total + next);
+            //};
 
-                Parallel.ForEach(contents, (content) =>
-                {
-                    var words = content.Split(" ");
-                    numberOfWordsFile1 += words.Length;
-                    Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
-                });
-            };
+            //Parallel.Invoke(action);
+            //timer.Stop();
+            //Console.WriteLine("Aggregation result : {0}", sumNumbers);
+            //Console.WriteLine("{0} Elapsed time to get sum using Parallel.Invoke", timer.Elapsed.ToString());
 
-            Action taskFile2 = () =>
-            {
-                string[] contents = File.ReadAllLines(filePaths[1]);
+            //timer.Reset();
+            //timer.Start();
+            //var sumWithLinq = numbers.Sum();
+            //timer.Stop();
+            //Console.WriteLine("Linq sum result : {0}", sumWithLinq);
+            //Console.WriteLine("{0} Elapsed time to get sum using Linq", timer.Elapsed.ToString());
 
-                Parallel.ForEach(contents, (content) =>
-                {
-                    var words = content.Split(" ");
-                    numberOfWordsFile2 += words.Length;
-                    Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
-                });
-            };
+            //// Step 6
+            //Console.WriteLine();
+            //Console.WriteLine("--------------------");
+            //Console.WriteLine("STEP 6 :");
+            //List<string> filePaths = new List<string>
+            //{
+            //    "file1.txt",
+            //    "file2.txt"
+            //};
 
-            Parallel.Invoke(taskFile1, taskFile2);
+            //var numberOfWordsFile1 = 0;
+            //var numberOfWordsFile2 = 0;
 
-            Console.WriteLine("Number of words for file 1 : {0}", numberOfWordsFile1.ToString());
-            Console.WriteLine("Number of words for file 2 : {0}", numberOfWordsFile2.ToString());
+            //Action taskFile1 = () =>
+            //{
+            //    string[] contents = File.ReadAllLines(filePaths[0]);
+
+            //    Parallel.ForEach(contents, (content) =>
+            //    {
+            //        var words = content.Split(" ");
+            //        numberOfWordsFile1 += words.Length;
+            //        Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
+            //    });
+            //};
+
+            //Action taskFile2 = () =>
+            //{
+            //    string[] contents = File.ReadAllLines(filePaths[1]);
+
+            //    Parallel.ForEach(contents, (content) =>
+            //    {
+            //        var words = content.Split(" ");
+            //        numberOfWordsFile2 += words.Length;
+            //        Console.WriteLine("Number of words for this line : {0}", words.Length.ToString());
+            //    });
+            //};
+
+            //Parallel.Invoke(taskFile1, taskFile2);
+
+            //Console.WriteLine("Number of words for file 1 : {0}", numberOfWordsFile1.ToString());
+            //Console.WriteLine("Number of words for file 2 : {0}", numberOfWordsFile2.ToString());
         }
     }
 }
